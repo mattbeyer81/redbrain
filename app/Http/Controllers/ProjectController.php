@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
-
 
 class ProjectController extends Controller
 {
@@ -71,10 +71,10 @@ class ProjectController extends Controller
     *
     *   @param Request $request
     *
-    *   $return Response
+    *   $return JsonResponse
     */
 
-    public function getCommits(Request $request)
+    public function getCommits(Request $request) : JsonResponse
     {
         $client = new Client(['headers' => [
                 'Accept' => 'application/vnd.github.cloak-preview',
@@ -109,6 +109,7 @@ class ProjectController extends Controller
                 'to' => $to,
                 'author-username' => $authorUsername,
                 'results' => $commits], 200);
+
 
         } catch(GuzzleException $e){
             return response()->json([
