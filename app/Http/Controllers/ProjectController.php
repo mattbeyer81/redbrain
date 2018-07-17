@@ -22,7 +22,7 @@ class ProjectController extends Controller
     *   @return array
     */
 
-    private function requestCommits(array $commits, string $user, string $repo, Client $client)
+    private function requestCommits(array $commits, string $user, string $repo, Client $client) : array
     {
 
         $totalAdditions = 0;
